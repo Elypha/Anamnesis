@@ -307,11 +307,7 @@ public class MemoryService : ServiceBase<MemoryService>
 
 		Log.Information($"Found game version: {gameVer}");
 
-		if (gameVer != VersionInfo.ValidatedGameVersion)
-		{
-			Log.Warning($"Unrecognized game version: {gameVer}. Current validated version is: {VersionInfo.ValidatedGameVersion}");
-			await GenericDialog.ShowLocalizedAsync("Error_WrongVersion", "Error_WrongVersionTitle");
-		}
+		await Task.FromResult(0);
 
 		Handle = OpenProcess(0x001F0FFF, true, process.Id);
 		if (Handle == IntPtr.Zero)
